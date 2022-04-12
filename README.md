@@ -1,4 +1,4 @@
-# Daradi-App
+# Dadido-App
 Tema project ini adalah Marketplace NFT berbasis Mobile.
 
 Anggota Kelompok :
