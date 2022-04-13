@@ -2,6 +2,7 @@ package com.example.daradiapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -23,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
     TextInputLayout passwordField;
     TextInputLayout usernameField;
     Button btnLogin;
+    Button goRegis;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,11 +34,19 @@ public class MainActivity extends AppCompatActivity {
         passwordField = (TextInputLayout) findViewById(R.id.textInputLayoutPassword);
         usernameField = (TextInputLayout) findViewById(R.id.textInputLayoutUsername);
         btnLogin = (Button) findViewById(R.id.buttonLogin);
+        goRegis = (Button) findViewById(R.id.goRegister);
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 login();
+            }
+        });
+
+        goRegis.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this, RegisterActivity.class));
             }
         });
     }
@@ -53,30 +63,22 @@ public class MainActivity extends AppCompatActivity {
                 .addFormDataPart("password", password)
                 .build();
 
-        Call<ArrayList<User>> call = apis.getAllUser(requestBody);
-        call.enqueue(new Callback<ArrayList<User>>() {
+        Call call = apis.login(requestBody);
+        call.enqueue(new Callback() {
             @Override
-            public void onResponse(Call<ArrayList<User>> call, Response<ArrayList<User>> response) {
+            public void onResponse(Call call, Response response) {
                 if(response.isSuccessful()) {
-                    ArrayList<User> data = response.body();
-                    if(data.get(0).getUsername().equals(username) && data.get(0).getPassword().equals(password)) {
-                        Toast.makeText(getApplicationContext(), "Login Successful", Toast.LENGTH_SHORT).show();
-                    } else {
-                        Toast.makeText(getApplicationContext(), "Wrong username or password!", Toast.LENGTH_SHORT).show();
-                    }
+                    String res = response.body().toString();
+                    Toast.makeText(getApplicationContext(), res, Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(getApplicationContext(), response.message(), Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
-            public void onFailure(Call<ArrayList<User>> call, Throwable t) {
-                Toast.makeText(getApplicationContext(), "Failed to send / get data from server", Toast.LENGTH_SHORT).show();
+            public void onFailure(Call call, Throwable t) {
+
             }
         });
-    }
-
-    public void register() {
-
     }
 }
