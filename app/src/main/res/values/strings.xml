@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">DadidoApp</string>
+    <string name="judul_gambar_card">image_title</string>
+    <string name="token_id_card">Token_id</string>
+    <string name="price_card">Price</string>
+    <string name="total_price_card">0.0</string>
+    <string name="total_like_card">0</string>
 </resources>
