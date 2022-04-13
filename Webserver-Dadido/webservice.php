@@ -20,18 +20,18 @@ header('Access-Control-Allow-Origin: *');
 				$sql = "SELECT * FROM tbl_user";
 				$query = mysqli_query($my_conn,$sql);
 				
-					if($query){
-						while($row = mysqli_fetch_assoc($query)){
-							$result[] = $row;
-						}
-						echo json_encode($result);
-					}else{
-						$return["error"] = true;
-						$return["message"] = "Database error".$sql;
-					
-						// tell browser that its a json data
-						echo json_encode($return);
+				if($query){
+					while($row = mysqli_fetch_assoc($query)){
+						$result[] = $row;
 					}
+					echo json_encode($result);
+				}else{
+					$return["error"] = true;
+					$return["message"] = "Database error".$sql;
+				
+					// tell browser that its a json data
+					echo json_encode($return);
+				}
 				break;
 
 			case 'login_user':
@@ -42,16 +42,10 @@ header('Access-Control-Allow-Origin: *');
 				$sql = "SELECT * FROM tbl_user WHERE username = '$username' AND password = '$password'";
 				$query = mysqli_query($my_conn,$sql);
 			
-				if(mysqli_num_rows($query) > 0){
-					while($row = mysqli_fetch_assoc($query)){
-						$result[] = $row;
-					}
-					echo json_encode($result);
-				}else{
-					$return["message"] = "Wrong username or password";
-				
-					// tell browser that its a json data
-					echo json_encode($return);
+				if(mysqli_num_rows($query) == 0){
+					echo json_encode("Wrong username or password");
+				} else {
+					echo json_encode("Login Successfull");
 				}
 				break;
 			
@@ -65,15 +59,11 @@ header('Access-Control-Allow-Origin: *');
 				$sql = "INSERT INTO tbl_user (fullname, username, email, password) VALUES ('$fullname','$username','$email','$password')";
 
 				if(mysqli_query($my_conn, $sql)) {
-					$return["message"] = "Register Successfull!!";
-
-					echo json_encode($return);
+					echo json_encode("Register Successfull!!");
 				} else {
-					$return["message"] = "Error";
-
-					echo json_encode($return);
+					echo "Error";
 				}
-				
+
 				break;
 			default:
 				$response['error'] = true;
