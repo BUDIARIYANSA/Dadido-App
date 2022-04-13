@@ -119,7 +119,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:fontFamily="@font/poppinsregular"
-        android:text="@string/login_textview_to_regist"
+        android:text="@string/login_textview_to_register"
         android:textAppearance="@style/TextAppearance.AppCompat.Small"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

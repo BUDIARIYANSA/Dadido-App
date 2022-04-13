@@ -211,14 +211,14 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:fontFamily="@font/poppinsregular"
-            android:text="@string/login_textview_to_regist"
+            android:text="@string/register_textview_to_login"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/buttonRegister" />
 
         <Button
-            android:id="@+id/goRegister2"
+            android:id="@+id/goLogin"
             style="?android:attr/borderlessButtonStyle"
             android:layout_width="93dp"
             android:layout_height="45dp"

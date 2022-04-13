@@ -26,6 +26,7 @@ public class RegisterActivity extends AppCompatActivity {
     TextInputLayout passwordField;
     TextInputLayout confirmPasswordField;
     Button btnRegister;
+    Button goLogin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +39,7 @@ public class RegisterActivity extends AppCompatActivity {
         passwordField = (TextInputLayout) findViewById(R.id.textInputLayoutPassword);
         confirmPasswordField = (TextInputLayout) findViewById(R.id.textInputLayoutConfirmPassword);
         btnRegister = (Button) findViewById(R.id.buttonRegister);
+        goLogin = (Button) findViewById(R.id.goLogin);
 
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -53,6 +55,13 @@ public class RegisterActivity extends AppCompatActivity {
                 } else {
                     register(username, fullname, email, password);
                 }
+            }
+        });
+
+        goLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(RegisterActivity.this, MainActivity.class));
             }
         });
     }
