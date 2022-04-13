@@ -98,7 +98,7 @@
             android:layout_marginTop="15dp"
             app:layout_constraintEnd_toStartOf="@+id/textView_total_like"
             app:layout_constraintTop_toBottomOf="@+id/textView_total_price"
-            app:srcCompat="@drawable/icon_heart_100_red" />
+            app:srcCompat="@drawable/icons_love_100_full" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
